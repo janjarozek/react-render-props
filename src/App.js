@@ -21,7 +21,6 @@ class App extends React.Component {
       <div className="App">
         <button onClick={this.changeView}>Change view</button>
         <UsersContainer
-          viewTable={viewTable}
           render={({users}) =>
           (viewTable === true) ?
             (<UsersTable users={users} />) :
