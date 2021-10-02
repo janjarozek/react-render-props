@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 
 import UsersContainer from './components/UsersContainer';
+import UsersTable from './components/UsersTable';
+import UsersCard from './components/UsersCard';
 
 class App extends React.Component {
   state = {
@@ -18,7 +20,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <button onClick={this.changeView}>Change view</button>
-        <UsersContainer viewTable={viewTable} />
+        <UsersContainer
+          viewTable={viewTable}
+          render={({users}) =>
+          (viewTable === true) ?
+            (<UsersTable users={users} />) :
+            (<UsersCard users={users} />)
+        }/>
       </div>
     );
   }

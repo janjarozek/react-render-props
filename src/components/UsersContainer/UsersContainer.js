@@ -1,9 +1,6 @@
-import React from 'react'
+import { Component } from 'react'
 
-import UsersTable from '../UsersTable';
-import UsersCard from '../UsersCard';
-
-class UsersContainer extends React.Component {
+class UsersContainer extends Component {
     state = {
         users: []
     }
@@ -14,6 +11,8 @@ class UsersContainer extends React.Component {
             this.setState({
                 users: data.results
             });
+        } else {
+            console.error("Bad response, please check:", response);
         }
     }
 
@@ -23,13 +22,8 @@ class UsersContainer extends React.Component {
 
     render() {
         const { users } = this.state;
-        const { viewTable } = this.props;
-        return (
-            <div>
-                {viewTable && <UsersTable users={users} />}
-                {!viewTable && <UsersCard users={users} />}
-            </div>
-        )
+
+        return this.props.render( {users} );
     };
 }
 export default UsersContainer;
